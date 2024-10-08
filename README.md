@@ -1,3 +1,5 @@
+<img alt="TOML Parser Logo" src="https://github.com/Dev-Marco/Godot-TOML/blob/main/toml-parser-logo.png" width="200"/>
+
 # A simple TOML Parser and Writer for the Godot Engine
 
 A lightweight TOML parser and writer for the Godot Engine (version 4.3.stable), implemented in GDScript.
