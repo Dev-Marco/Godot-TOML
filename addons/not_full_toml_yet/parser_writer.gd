@@ -63,16 +63,11 @@ var _date_time_regex: RegEx = RegEx.create_from_string(_date_time_pattern)
 
 var _writer: _TomlWriter = _TomlWriter.new()
 
-func parse(path: String) -> Dictionary:
-	var file: FileAccess = FileAccess.open(path, FileAccess.READ)
-
+func parse_from_string(toml: String) -> Dictionary:
 	var data: Dictionary = {}
-	var lines: Array[String] = []
+	var lines: Array[String] = toml.split('\n')
 	var head: _WriteHead = _WriteHead.new()
 
-
-	while not file.eof_reached():
-		lines.append(file.get_line())
 
 	var parent: Dictionary = data
 	var sub_tables: Array[String]
@@ -112,6 +107,15 @@ func parse(path: String) -> Dictionary:
 			head.go_to(sub_tables)
 			head.build({}, data, _table_is_list(table))
 
+	return data
+
+
+func parse(path: String) -> Dictionary:
+	var toml: String = FileAccess.get_file_as_string(path)
+
+
+	var data: Dictionary = parse_from_string(toml)
+	
 	return data
 
 
